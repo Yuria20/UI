@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:cabston/posetab.dart';
 
+import 'helo.dart';
+
 //자세연습페이지
 
 class TabPage extends StatefulWidget {
@@ -12,7 +14,8 @@ class TabPage extends StatefulWidget {
   _TabPageState createState() => _TabPageState();
 }
 
-class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
+class _TabPageState extends State<TabPage> with SingleTickerProviderStateMixin  {
+
   late TabController _tabController;
   String appBarTitle = ''; // 날짜 문자열을 저장할 변수
   TextStyle appBarTitleStyle = TextStyle(
@@ -49,6 +52,25 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
       });
     }
   }
+  int currentTabIndex = 0;
+  bool showWowButton = true;
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+  void changeTabContent(int index) {
+    setState(() {
+      currentTabIndex = index;
+    });
+  }
+  void toggleWowButton() {
+    setState(() {
+      showWowButton = !showWowButton;
+      changeTabContent(0); // 세 번째 이미지 버튼을 누르면 첫 번째 탭으로 변경
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +144,67 @@ class _TabPageState extends State<TabPage> with TickerProviderStateMixin {
               controller: _tabController,
               children: [ // 각 탭 영역 선언 부분
                 // 챌린져스 탭 부분
-                challengers(),
+                Container(
+                  color: Color(0xFFC8FCC3),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        //width: 10, // 가로 간격 조절
+                        height: 10, // 세로 간격 조절
+                      ),
+                      Expanded(
+                        flex: 1, // 첫 번째 Expanded 위젯
+                        child: InkWell(
+                          onTap: () {
+                            // 첫 번째 이미지 버튼을 눌렀을 때 수행할 동작 추가
+                          },
+                          child: Image.asset(
+                            'assets/chellen/recomand_button.png',
+                            //width: 100, // 이미지의 가로 크기
+                            //height: 100, // 이미지의 세로 크기
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        //width: 10, // 가로 간격 조절
+                        height: 50, // 세로 간격 조절
+                      ),
+                      Expanded(
+                        flex: 1, // 두 번째 Expanded 위젯
+                        child: InkWell(
+                          onTap: () {
+                            // 두 번째 이미지 버튼을 눌렀을 때 수행할 동작 추가
+                          },
+                          child: Image.asset(
+                            'assets/chellen/custom_button.png',
+                            //width: 100, // 이미지의 가로 크기
+                            //height: 100, // 이미지의 세로 크기
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        //width: 10, // 가로 간격 조절
+                        height: 50, // 세로 간격 조절
+                      ),
+                      Expanded(
+                        flex: 1, // 세 번째 Expanded 위젯
+                        child: showWowButton ?
+                        InkWell(
+                          onTap: () { toggleWowButton(); },
+                          child: Image.asset(
+                            'assets/chellen/ranking_button.png',
+                            //width: 100, // 이미지의 가로 크기
+                            //height: 100, // 이미지의 세로 크기
+                          ),
+                        )
+                            : tt(),
+                        ),
+                    ],
+                  ),
+                ),
                 //자세연습 탭
                 posetab(),
               ],

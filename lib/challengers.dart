@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cabston/helo.dart';
+import 'package:cabston/pose_ex.dart';
 
 class challengers extends StatefulWidget {
+  const challengers({Key? key}) : super(key: key);
   @override
   _challengers createState() => _challengers();
 }
 
-class _challengers extends State<challengers> {
+class _challengers extends State<challengers> with SingleTickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
