@@ -11,7 +11,7 @@ class tt extends StatelessWidget {
             width: double.infinity,
             height: 200,
             color: Color(0xFFC8FCC3),
-            child: Image.asset('assets/pose/p_button_pose_1.png'),
+            child: Image.asset('assets/pose/downdog_example.png'),
           ),
           Padding(
             padding: EdgeInsets.all(16.0),

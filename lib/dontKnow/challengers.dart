@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:cabston/helo.dart';
+import 'package:cabston/dontKnow/helo.dart';
+import 'package:cabston/MainPage.dart';
 
-class First extends StatefulWidget {
+class challengers extends StatefulWidget {
+  const challengers({Key? key}) : super(key: key);
   @override
-  _FirstState createState() => _FirstState();
+  _challengers createState() => _challengers();
 }
 
-class _FirstState extends State<First> {
+class _challengers extends State<challengers> with SingleTickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,12 +62,11 @@ class _FirstState extends State<First> {
               flex: 1, // 세 번째 Expanded 위젯
               child: InkWell(
                 onTap: () {
+                  Navigator.of(context).pop();
                   Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return tt(); // 요가 자세 설명을 전달
-                      },
-                    ),
+                      MaterialPageRoute(
+                        builder: (context) => tt(),
+                      ),
                   );
                 },
                 child: Image.asset(
